@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Scale {
+public class Scale implements Sequence {
 	private Logger LOGGER = LogManager.getLogger(IntervalCreator.class);
 	private List<Interval> scaleIntervals;
 
