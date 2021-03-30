@@ -64,12 +64,9 @@
 							<!-- excludes testing.example.bank.app.Main -->
 							<param>com.mycompany.app.app.*</param>
 						</targetClasses>
-						<excludedClasses>
-							<param>com.mycompany.app.app.Main*</param>
-						</excludedClasses>
-						<targetTests>
-							<param>com.mycompany.app.app.*</param>
-						</targetTests>
+						<excludedTestClasses>
+							<param>main</param>
+						</excludedTestClasses>   
 						<mutators>
 							<mutator>DEFAULTS</mutator>
 						</mutators>

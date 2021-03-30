@@ -1,7 +1,12 @@
-package com.mycompany.app.app;
+package main;
 
 import java.util.Arrays;
 import java.util.List;
+
+import com.mycompany.app.app.Interval;
+import com.mycompany.app.app.Note;
+import com.mycompany.app.app.Scale;
+import com.mycompany.app.app.ScaleCreator;
 
 public class Main_Music {
 
