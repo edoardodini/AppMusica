@@ -19,15 +19,31 @@ public class ScaleEightTest {
 	}
 	
 	@Test
-	public void testScaleEightWrongIntervals() {
+	public void testScaleEightNotEnoughIntervals() {
 		Interval half = new Interval(0,1);
 		Interval tone = new Interval(1,0);
 		List<Interval> wrongScaleIntervals2 = new ArrayList<Interval>(Arrays.asList(tone, half));
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
 				() -> new ScaleEight(wrongScaleIntervals2));
 		assertEquals("The argument should contain 7 intervals", exception.getMessage());
+	}
+	
+	@Test
+	public void testScaleEightEnoughIntervalsButWrongKind() {
+		Interval half = new Interval(0,1);
+		Interval tone = new Interval(1,0);
 		List<Interval> wrongScaleIntervals7 = new ArrayList<Interval>(Arrays.asList(tone, half, tone, tone, tone, tone, tone));
-		exception = assertThrows(IllegalArgumentException.class,
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+				() -> new ScaleEight(wrongScaleIntervals7));
+		assertEquals("The argument is not an eight scale", exception.getMessage());
+	}
+	
+	@Test
+	public void testScaleEightEnoughIntervalsButWrongPosition() {
+		Interval half = new Interval(0,1);
+		Interval tone = new Interval(1,0);
+		List<Interval> wrongScaleIntervals7 = new ArrayList<Interval>(Arrays.asList(half, half, tone, tone, tone, tone, tone));
+		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
 				() -> new ScaleEight(wrongScaleIntervals7));
 		assertEquals("The argument is not an eight scale", exception.getMessage());
 	}
