@@ -41,6 +41,8 @@ public class ScaleCreator {
 		String[] alternativeNotes = new String[7];
 		for (int i=0;i<7;i++) {
 			switch(scale.get(i).getNote()) {
+				default:
+					//do nothing;
 				case "DO":
 					changedNotes[i] = "SI#";
 					naturalNotes[i] = "DO";
@@ -156,43 +158,7 @@ public class ScaleCreator {
 			}
 		}
 		scale.set(7,scale.get(0));
-		/*
-		
-		
-		for (int scaleN=0;scaleN<7;scaleN++) {
-			if(naturalNotes[scaleN].equals(rootNotes[scaleN-1])||alternativeNotes[scaleN].equals(naturalNotes[0])) {
-				rootNotes[scaleN]=alternativeNotes[scaleN];
-				scale.set(scaleN,new Note(changedNotes[scaleN]));
-			}else {
-				rootNotes[scaleN]=naturalNotes[scaleN];
-			}
-		}
-		scale.set(7,scale.get(0));
-		/*
-		if (scale.get(0).getNote().substring(scale.get(0).getNote().length()-1,scale.get(0).getNote().length()).equals("b")) {
-			if (scale.get(0).getNote().substring(0,scale.get(0).getNote().length()-1).equals(scale.get(1).getNote())) {
-				scale.set(0,new Note(changedNotes[0]));
-				rootNotes[0] = alternativeNotes[0];
-				naturalNotes[0] = alternativeNotes[0];
-			}else {
-				rootNotes[0]=naturalNotes[0];
-			}
-		}
-		
-		// occhio qui
-		//rootNotes[0]=naturalNotes[0];
-		for (int scaleN=1;scaleN<7;scaleN++) {
-			if(naturalNotes[scaleN].equals(rootNotes[scaleN-1])||naturalNotes[scaleN].equals(naturalNotes[0])) {
-				rootNotes[scaleN]=alternativeNotes[scaleN];
-				scale.set(scaleN,new Note(changedNotes[scaleN]));
-			}else {
-				rootNotes[scaleN]=naturalNotes[scaleN];
-			}
-		}
-		scale.set(7,scale.get(0));
-		*/
 	}
-	
 	
 	private String[] rootSequenceFromNaturalNote(String naturalRootNote) {
 		String[] naturalNotes = {"DO","RE","MI","FA","SOL","LA","SI"};

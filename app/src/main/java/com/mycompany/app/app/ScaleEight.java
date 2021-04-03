@@ -44,9 +44,13 @@ public class ScaleEight implements Sequence {
 				halfs=halfs+1;
 			}
 		}
-		if (tones==5 && halfs ==2 && (secondHalf-firstHalf==3||secondHalf-firstHalf==4)) {
-			return true;
-		}else {
+		if (tones==5 && halfs ==2){
+			if(secondHalf-firstHalf==3||secondHalf-firstHalf==4){
+				return true;
+			} else {
+				return false;
+			}
+		}else{
 			return false;
 		}
 	}
