@@ -16,4 +16,4 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn -f app.pom.xml clean jacoco:prepare-agent test jacoco:report org.pitest:pitest-maven:mutationCoverage
+      run: mvn -f app/pom.xml clean jacoco:prepare-agent test jacoco:report org.pitest:pitest-maven:mutationCoverage
