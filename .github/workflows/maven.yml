@@ -1,5 +1,5 @@
 #This workflow will build a Java project with Maven
-name: Java CI with Maven in Linux, Coverage and Mutation Testing
+name: Java CI with Maven in Lnx/Win/Mac, Coverage and Mutation Testing
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
     - name: Build with Maven
       run: mvn -f app/pom.xml clean jacoco:prepare-agent test jacoco:report org.pitest:pitest-maven:mutationCoverage
       if: ${{ always() }}
-    - name: Archive JUnit Report
+    - name: Archive JaCoCo Report
       uses: actions/upload-artifact@v2
       if: ${{ always() }}
       with:
