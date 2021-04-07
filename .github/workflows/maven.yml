@@ -19,7 +19,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml', '**/*.yml') }}
         restore-keys: ${{ runner.os }}-m2-
     - name: Build with Maven
       run: mvn -f app/pom.xml clean jacoco:prepare-agent test jacoco:report org.pitest:pitest-maven:mutationCoverage
