@@ -1,5 +1,5 @@
 #This workflow will build a Java project with Maven
-name: Java CI with Maven in Linux, Coverage and Mutation Testing
+name: Java CI with Maven in Lnx/Win/Mac, Coverage and Mutation Testing
 
 on:
   push:
@@ -7,8 +7,12 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        # test against several OSes:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    name: Build with Java on ${{ matrix.os }}  
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 8
@@ -19,7 +23,20 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ~/.m2
-        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml', '**/*.yml') }}
         restore-keys: ${{ runner.os }}-m2-
     - name: Build with Maven
       run: mvn -f app/pom.xml clean jacoco:prepare-agent test jacoco:report org.pitest:pitest-maven:mutationCoverage
+      if: ${{ always() }}
+    - name: Archive JaCoCo Report
+      uses: actions/upload-artifact@v2
+      if: ${{ always() }}
+      with:
+        name: jacoco-report
+        path: '**/target/site'
+    - name: Archive PIT Report
+      uses: actions/upload-artifact@v2
+      if: ${{ always() }}
+      with:
+        name: pit-report
+        path: '**/target/pit-reports'
