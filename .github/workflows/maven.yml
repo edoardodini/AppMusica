@@ -27,3 +27,10 @@ jobs:
         restore-keys: ${{ runner.os }}-m2-
     - name: Build with Maven
       run: mvn -f app/pom.xml clean jacoco:prepare-agent test jacoco:report org.pitest:pitest-maven:mutationCoverage
+      if: ${{ always() }}
+    - name: Archive JUnit Report
+      uses: actions/upload-artifact@v2
+      if: ${{ always() }}
+      with:
+        name: surefire-report-jdk-${{ matrix.java }}
+        path: '**/target/site'
