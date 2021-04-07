@@ -32,5 +32,11 @@ jobs:
       uses: actions/upload-artifact@v2
       if: ${{ always() }}
       with:
-        name: surefire-report-jdk
+        name: jacoco-report
         path: '**/target/site'
+    - name: Archive PIT Report
+      uses: actions/upload-artifact@v2
+      if: ${{ always() }}
+      with:
+        name: pit-report
+        path: '**/target/pit-reports'
