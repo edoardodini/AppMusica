@@ -12,16 +12,13 @@ public class ScaleTest {
 
 	@Test
 	public void testScaleConstructorAndGet() {
-		Note rootNote = new Note("DO");
 		Interval half = new Interval(0,1);
 		Interval tone = new Interval(1,0);
 		List<Interval> majorScaleIntervals = new ArrayList<Interval>(Arrays.asList(tone,tone, half, tone, tone, tone, half));		
-		Scale majorScale = new Scale(rootNote, majorScaleIntervals);
+		Scale majorScale = new Scale(majorScaleIntervals);
 		assertEquals("The intervals should be the same", majorScale.getIntervals(), majorScaleIntervals);
-		assertEquals("The root note should be the same", majorScale.getRootNote(), rootNote);
 	}
 	
-	SequenceCreator sequenceCreator = new SequenceCreator();
 	Interval tone = new Interval(1, 0);
 	Interval half = new Interval(0, 1);
 	
@@ -29,16 +26,16 @@ public class ScaleTest {
 	public void testScaleCreation() {
 		Note rootNote = new Note("DO");
 		Interval[] majorScaleInterval = { tone, tone, half, tone, tone, tone, half };
-		Scale majorScale = new Scale(rootNote, Arrays.asList(majorScaleInterval));
+		Scale majorScale = new Scale(Arrays.asList(majorScaleInterval));
 		Note[] DoMajorScale = { new Note("DO"), new Note("RE"), new Note("MI"), new Note("FA"), new Note("SOL"),
 				new Note("LA"), new Note("SI"), new Note("DO") };
-		assertEquals("The scale should be composed by the same elements", Arrays.asList(DoMajorScale), majorScale.getNotes());
+		assertEquals("The scale should be composed by the same elements", Arrays.asList(DoMajorScale), majorScale.getNotes(rootNote));
 		
 		Interval[] minorScaleInterval = { tone, half, tone, tone, half, tone, tone };
-		Scale minorScale = new Scale(rootNote, Arrays.asList(minorScaleInterval));
+		Scale minorScale = new Scale(Arrays.asList(minorScaleInterval));
 		Note[] DoMinorScale = { new Note("DO"), new Note("RE"), new Note("RE#"), new Note("FA"), new Note("SOL"),
 				new Note("SOL#"), new Note("LA#"), new Note("DO") };
-		assertEquals("The scale should be composed by the same elements", Arrays.asList(DoMinorScale), minorScale.getNotes());
+		assertEquals("The scale should be composed by the same elements", Arrays.asList(DoMinorScale), minorScale.getNotes(rootNote));
 	}
 
 }

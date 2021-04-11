@@ -9,18 +9,16 @@ public class Chord implements Sequence{
 	private Logger LOGGER = LogManager.getLogger(IntervalCreator.class);
 	private List<Interval> chordIntervals;
 	private Scale temporaryScale;
-	private Note rootNote;
-	
-	public Chord(Note rootNote, List<Interval> chordIntervals) {
+		
+	public Chord(List<Interval> chordIntervals) {
 		if(chordIntervals.size()>=2) {
 				if(!intervalsAreGood(chordIntervals)) {
-					temporaryScale = new Scale(rootNote, chordIntervals);
-					this.rootNote = rootNote;
 					LOGGER.debug(() -> String.format("The chord cannot be created because of invalid arguments"));
 					throw new IllegalArgumentException("The argument is not a valid chord, wrong intervals");
 				}else {
 					LOGGER.info(() -> String.format("New chord created"));
 					this.chordIntervals = chordIntervals;
+					temporaryScale = new Scale(chordIntervals);
 				}
 		}else {
 			LOGGER.debug(() -> String.format("The chord cannot be created because of invalid arguments, not enough intervals"));
@@ -48,12 +46,8 @@ public class Chord implements Sequence{
 	}
 
 	@Override
-	public List<Note> getNotes() {
-		return temporaryScale.getNotes();
-	}
-
-	@Override
-	public Note getRootNote() {
-		return rootNote;
+	public List<Note> getNotes(Note rootNote) {
+		LOGGER.debug(() -> String.format("The chord creation has been requested with root note: %s",rootNote.getNote()));
+		return temporaryScale.getNotes(rootNote);
 	}
 }

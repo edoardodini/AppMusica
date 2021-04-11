@@ -9,11 +9,9 @@ import org.apache.logging.log4j.Logger;
 public class Scale implements Sequence {
 	private Logger LOGGER = LogManager.getLogger(IntervalCreator.class);
 	private List<Interval> scaleIntervals;
-	private Note rootNote;
 	private IntervalCreator intCreat = new IntervalCreator();
 	
-	public Scale(Note rootNote, List<Interval> scaleIntervals) {
-		this.rootNote = rootNote;
+	public Scale(List<Interval> scaleIntervals) {
 		this.scaleIntervals = scaleIntervals;
 		LOGGER.debug("created a scale by setting some intervals and a root note");
 	}
@@ -23,13 +21,8 @@ public class Scale implements Sequence {
 		return scaleIntervals;
 	}
 
-	public Note getRootNote() {
-		LOGGER.debug("requested the root note of the scale");
-		return rootNote;
-	}
-	
 	@Override
-	public List<Note> getNotes() {
+	public List<Note> getNotes(Note rootNote) {
 		List<Note> sequence = new ArrayList<Note>();
 		sequence.add(rootNote);
 		for (int i = 1; i < scaleIntervals.size() + 1; i++) {

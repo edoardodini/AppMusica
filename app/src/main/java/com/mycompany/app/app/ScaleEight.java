@@ -10,15 +10,13 @@ public class ScaleEight implements Sequence {
 
 	private Logger LOGGER = LogManager.getLogger(IntervalCreator.class);
 	private List<Interval> scaleIntervals;
-	private Note rootNote;
 	private Scale temporaryScale;
 
-	public ScaleEight(Note rootNote, List<Interval> scaleIntervals) {
+	public ScaleEight(List<Interval> scaleIntervals) {
 		if (scaleIntervals.size()==7) {
 			if (checkIntervals(scaleIntervals)) {
 				this.scaleIntervals = scaleIntervals;
-				this.rootNote = rootNote;
-				temporaryScale = new Scale(rootNote, scaleIntervals);
+				temporaryScale = new Scale(scaleIntervals);
 				LOGGER.debug("created a scale by setting some intervals");
 				LOGGER.info(() -> String.format("created a eight scale by setting some intervals"));
 			} else {
@@ -66,13 +64,8 @@ public class ScaleEight implements Sequence {
 	}
 
 	@Override
-	public List<Note> getNotes() {
-		return normalizeEightScale(temporaryScale.getNotes());
-	}
-
-	@Override
-	public Note getRootNote() {
-		return rootNote;
+	public List<Note> getNotes(Note rootNote) {
+		return normalizeEightScale(temporaryScale.getNotes(rootNote));
 	}
 	
 	private List<Note> normalizeEightScale(List<Note> scale) {

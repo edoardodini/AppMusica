@@ -16,7 +16,7 @@ public class ChordTest {
 		Interval majorThird = new Interval(2,0);
 		Interval minorThird = new Interval(1,1);
 		List<Interval> majorChordIntervals = new ArrayList<Interval>(Arrays.asList(majorThird,minorThird));
-		Chord majorChord = new Chord(rootNoteDO, majorChordIntervals);
+		Chord majorChord = new Chord(majorChordIntervals);
 		assertEquals("The chords should be the same", majorChord.getIntervals(), majorChordIntervals);
 	}
 	@Test
@@ -25,7 +25,7 @@ public class ChordTest {
 		Interval majorThird = new Interval(2,0);
 		List<Interval> wrongChordIntervals = new ArrayList<Interval>(Arrays.asList(oneTone,majorThird));
 		IllegalArgumentException exceptionOne = assertThrows(IllegalArgumentException.class,
-				() -> new Chord(rootNoteDO, wrongChordIntervals));
+				() -> new Chord(wrongChordIntervals));
 		assertEquals("The argument is not a valid chord, wrong intervals", exceptionOne.getMessage());
 	}
 	@Test
@@ -33,7 +33,7 @@ public class ChordTest {
 		Interval majorThird = new Interval(2,0);
 		List<Interval> wrongChordIntervals = new ArrayList<Interval>(Arrays.asList(majorThird));
 		IllegalArgumentException exceptionOne = assertThrows(IllegalArgumentException.class,
-				() -> new Chord(rootNoteDO, wrongChordIntervals));
+				() -> new Chord(wrongChordIntervals));
 		assertEquals("The argument is not a valid chord, not enough intervals", exceptionOne.getMessage());
 	}
 	@Test
@@ -42,7 +42,7 @@ public class ChordTest {
 		Interval majorThird = new Interval(2,0);
 		List<Interval> wrongChordIntervals = new ArrayList<Interval>(Arrays.asList(majorThird,oneTone));
 		IllegalArgumentException exceptionOne = assertThrows(IllegalArgumentException.class,
-				() -> new Chord(rootNoteDO, wrongChordIntervals));
+				() -> new Chord(wrongChordIntervals));
 		assertEquals("The argument is not a valid chord, wrong intervals", exceptionOne.getMessage());
 	}
 	@Test
@@ -53,26 +53,24 @@ public class ChordTest {
 		Interval alsoMinorThird = new Interval(0,3);
 		Interval anotherMajorThird = new Interval(1,2);
 		List<Interval> strangeChordIntervals = new ArrayList<Interval>(Arrays.asList(majorThird,minorThird,alsoMajorThird,alsoMinorThird,anotherMajorThird));
-		Chord strangeChord = new Chord(rootNoteDO, strangeChordIntervals);
+		Chord strangeChord = new Chord(strangeChordIntervals);
 		assertEquals("The chords should be the same", strangeChord.getIntervals(), strangeChordIntervals);
 	}
 	
 	@Test
 	public void testBasicChordCreation() {
-		Note rootNoteDO = new Note("DO");
 		Note rootNoteSOL = new Note("SOL");
 		Interval majorThird = new Interval(2,0);
 		Interval minorThird = new Interval(1,1);
 		Interval[] majorChordIntervals = {majorThird, minorThird};
-		Chord majorChordDO = new Chord(rootNoteDO, Arrays.asList(majorChordIntervals));
-		Chord majorChordSOL = new Chord(rootNoteSOL, Arrays.asList(majorChordIntervals));
+		Chord majorChord = new Chord(Arrays.asList(majorChordIntervals));
 		
 		Note[] DOMajorChordNotes = {new Note("DO"), new Note("MI"), new Note("SOL")};
-		List<Note> majorChordOfDO = majorChordDO.getNotes();
+		List<Note> majorChordOfDO = majorChord.getNotes(rootNoteDO);
 		assertEquals("The chord should be composed by the same elements", Arrays.asList(DOMajorChordNotes), majorChordOfDO);
 		
 		Note[] SOLMajorChordNotes = {new Note("SOL"), new Note("SI"), new Note("RE")};
-		List<Note> majorChordOfSOL = majorChordSOL.getNotes();
+		List<Note> majorChordOfSOL = majorChord.getNotes(rootNoteSOL);
 		assertEquals("The chord should be composed by the same elements", Arrays.asList(SOLMajorChordNotes), majorChordOfSOL);
 	}
 }
