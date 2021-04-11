@@ -44,4 +44,15 @@ public class ChordTest {
 				() -> new Chord(wrongChordIntervals));
 		assertEquals("The argument is not a valid chord, wrong intervals", exceptionOne.getMessage());
 	}
+	@Test
+	public void testStrangeButCorrectChord() {
+		Interval majorThird = new Interval(2,0);
+		Interval minorThird = new Interval(1,1);
+		Interval alsoMajorThird = new Interval(0,4);
+		Interval alsoMinorThird = new Interval(0,3);
+		Interval anotherMajorThird = new Interval(1,2);
+		List<Interval> strangeChordIntervals = new ArrayList<Interval>(Arrays.asList(majorThird,minorThird,alsoMajorThird,alsoMinorThird,anotherMajorThird));
+		Chord strangeChord = new Chord(strangeChordIntervals);
+		assertEquals("The chords should be the same", strangeChord.getIntervals(), strangeChordIntervals);
+	}
 }

@@ -33,8 +33,10 @@ public class Chord implements Sequence{
 	private boolean intervalsAreGood(List<Interval> chordIntervals) {
 		boolean isChordGood = true;
 		for(int i=0;i<chordIntervals.size();i++) {
-			if(2*chordIntervals.get(i).getIntervalTones()+chordIntervals.get(i).getIntervalHalfTones()!=3&&
-					2*chordIntervals.get(i).getIntervalTones()+chordIntervals.get(i).getIntervalHalfTones()!=4) {
+			if(chordIntervals.get(i).getIntervalTones()*2+chordIntervals.get(i).getIntervalHalfTones()==3||
+					chordIntervals.get(i).getIntervalTones()*2+chordIntervals.get(i).getIntervalHalfTones()==4) {
+				//do nothing
+			}else {
 				isChordGood= false;
 			}
 		}
