@@ -6,7 +6,7 @@ import java.util.List;
 import com.mycompany.app.app.Interval;
 import com.mycompany.app.app.Note;
 import com.mycompany.app.app.Scale;
-import com.mycompany.app.app.ScaleCreator;
+import com.mycompany.app.app.SequenceCreator;
 
 public class Main_Music {
 
@@ -18,7 +18,7 @@ public class Main_Music {
 		Interval halfTone = new Interval(0, 1);
 		Scale majorScale = new Scale(Arrays.asList(tone, tone, halfTone, tone, tone, tone, halfTone));
 		Scale minorScale = new Scale(Arrays.asList(tone, halfTone, tone, tone, halfTone, tone, tone));
-		ScaleCreator scaleCreator = new ScaleCreator();
+		SequenceCreator scaleCreator = new SequenceCreator();
 		List<Note> doMajorScale;
 		List<Note> reMajorScale;
 		List<Note> doMinorScale;

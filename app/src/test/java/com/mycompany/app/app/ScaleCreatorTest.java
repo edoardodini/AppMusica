@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.Test;
 
 public class ScaleCreatorTest {
-	ScaleCreator scaleCreator = new ScaleCreator();
+	SequenceCreator scaleCreator = new SequenceCreator();
 	Interval tone = new Interval(1, 0);
 	Interval half = new Interval(0, 1);
 	

@@ -6,8 +6,8 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class ScaleCreator {
-	private Logger LOGGER = LogManager.getLogger(ScaleCreator.class);
+public class SequenceCreator {
+	private Logger LOGGER = LogManager.getLogger(SequenceCreator.class);
 	private IntervalCreator intCreat = new IntervalCreator();
 
 	public List<Note> createScale(Note rootNote, Scale referenceScale) {
