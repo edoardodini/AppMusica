@@ -16,17 +16,18 @@ public class Main_Music {
 		Note noteLa = new Note("LA");
 		Interval tone = new Interval(1, 0);
 		Interval halfTone = new Interval(0, 1);
-		Scale majorScale = new Scale(Arrays.asList(tone, tone, halfTone, tone, tone, tone, halfTone));
-		Scale minorScale = new Scale(Arrays.asList(tone, halfTone, tone, tone, halfTone, tone, tone));
-		SequenceCreator scaleCreator = new SequenceCreator();
+		Scale majorScaleDO = new Scale(noteDo, Arrays.asList(tone, tone, halfTone, tone, tone, tone, halfTone));
+		Scale majorScaleRE = new Scale(noteRe, Arrays.asList(tone, tone, halfTone, tone, tone, tone, halfTone));
+		Scale minorScaleLA = new Scale(noteLa, Arrays.asList(tone, halfTone, tone, tone, halfTone, tone, tone));
+		Scale minorScaleDO = new Scale(noteDo, Arrays.asList(tone, halfTone, tone, tone, halfTone, tone, tone));
 		List<Note> doMajorScale;
 		List<Note> reMajorScale;
 		List<Note> doMinorScale;
 		List<Note> laMinorScale;
-		doMajorScale = scaleCreator.createScale(noteDo, majorScale);
-		reMajorScale = scaleCreator.createScale(noteRe, majorScale);
-		doMinorScale = scaleCreator.createScale(noteDo, minorScale);
-		laMinorScale = scaleCreator.createScale(noteLa, minorScale);
+		doMajorScale = majorScaleDO.getNotes();
+		reMajorScale = majorScaleRE.getNotes();
+		doMinorScale = minorScaleDO.getNotes();
+		laMinorScale = minorScaleLA.getNotes();
 		System.out.print("scala maggiore di DO :");
 		for (Note note : doMajorScale) {
 			System.out.print(note.getNote() + ", ");

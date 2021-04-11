@@ -25,6 +25,10 @@ public class SequenceCreator {
 		return scala;
 	}
 	
+	public List<Note> createChord(Note rootNote, Chord chord) {
+		return createSequence(rootNote, chord);
+	}
+	
 	private List<Note> createSequence(Note rootNote, Sequence referenceSequence){
 		List<Note> sequence = new ArrayList<Note>();
 		sequence.add(new Note(rootNote.getNote()));
@@ -174,4 +178,5 @@ public class SequenceCreator {
 		}
 		return rootSequence;
 	}
+
 }
