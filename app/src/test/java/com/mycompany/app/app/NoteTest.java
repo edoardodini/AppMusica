@@ -34,8 +34,13 @@ public class NoteTest {
 	public void testNoteCompareEqualsBeingEquals() {
 		String noteDo = "DO";
 		String alsoNoteDo = "DO";
+		String noteDoDiesis = "DO#";
+		String noteReb = "REb";
 		Note firstNote = new Note(noteDo);
 		Note secondNote = new Note(alsoNoteDo);
+		assertTrue("The notes are equals", firstNote.equals(secondNote));
+		firstNote = new Note(noteDoDiesis);
+		secondNote = new Note(noteReb);
 		assertTrue("The notes are equals", firstNote.equals(secondNote));
 	}
 	
