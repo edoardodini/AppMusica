@@ -11,14 +11,14 @@ public class ScaleCreator {
 	private IntervalCreator intCreat = new IntervalCreator();
 
 	public List<Note> createScale(Note rootNote, Scale referenceScale) {
-		List<Note> scala = new ArrayList<Note>(); //[referenceScale.getIntervals().size() + 1];
+		List<Note> scala = new ArrayList<Note>();
 		scala = createSequence(rootNote, referenceScale);
 		LOGGER.info("created a scale of notes starting from a scale and a root note");
 		return scala;
 	}
 	
 	public List<Note> createScale(Note rootNote, ScaleEight referenceScale) {
-		List<Note> scala = new ArrayList<Note>(); //[referenceScale.getIntervals().size() + 1];
+		List<Note> scala = new ArrayList<Note>();
 		scala = createSequence(rootNote, referenceScale);
 		normalizeEightScale(scala);
 		LOGGER.info("created an eight scale of notes starting from an eight scale and a root note");
@@ -26,12 +26,12 @@ public class ScaleCreator {
 	}
 	
 	private List<Note> createSequence(Note rootNote, Sequence referenceSequence){
-		List<Note> sequence = new ArrayList<Note>(); //[referenceSequence.getIntervals().size() + 1];
+		List<Note> sequence = new ArrayList<Note>();
 		sequence.add(new Note(rootNote.getNote()));
 		for (int i = 1; i < referenceSequence.getIntervals().size() + 1; i++) {
 			sequence.add(intCreat.getIntervalUp(sequence.get(i - 1), referenceSequence.getIntervals().get(i - 1)));
 		}
-		LOGGER.debug("created a scale of notes starting from a scale and a root note");
+		LOGGER.debug("created a sequence of notes starting from a sequence and a root note");
 		return sequence;
 	}
 	
@@ -152,7 +152,7 @@ public class ScaleCreator {
 		}
 		for (int scaleN=0;scaleN<7;scaleN++) {
 			if(naturalNotes[scaleN].equals(rootNotes[scaleN])) {
-				//
+				//do nothing
 			}else {
 				scale.set(scaleN,new Note(changedNotes[scaleN]));
 			}
