@@ -69,8 +69,7 @@ public class Note {
 		}
 
 		/*
-		 * Check if o is an instance of Complex or not "null instance of [type]" also
-		 * returns false
+		 * Check if o is an instance of Complex or not "null instance of [type]" also returns false
 		 */
 		if (!(o instanceof Note)) {
 			LOGGER.debug(() -> String.format("The note is compared to an object that is not a note, it is a: " + o.getClass()));

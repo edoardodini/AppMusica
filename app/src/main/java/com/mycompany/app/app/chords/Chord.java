@@ -1,14 +1,20 @@
-package com.mycompany.app.app;
+package com.mycompany.app.app.chords;
 
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Chord implements Sequence{
+import com.mycompany.app.app.Interval;
+import com.mycompany.app.app.IntervalCreator;
+import com.mycompany.app.app.Note;
+import com.mycompany.app.app.Scale;
+
+public class Chord implements AbstractSuspendableChord, AbstractInvertableChord, AbstractAddableChord{
 	private Logger LOGGER = LogManager.getLogger(IntervalCreator.class);
 	private List<Interval> chordIntervals;
-	
+	private Scale temporaryScale;
+		
 	public Chord(List<Interval> chordIntervals) {
 		if(chordIntervals.size()>=2) {
 				if(!intervalsAreGood(chordIntervals)) {
@@ -17,6 +23,7 @@ public class Chord implements Sequence{
 				}else {
 					LOGGER.info(() -> String.format("New chord created"));
 					this.chordIntervals = chordIntervals;
+					temporaryScale = new Scale(chordIntervals);
 				}
 		}else {
 			LOGGER.debug(() -> String.format("The chord cannot be created because of invalid arguments, not enough intervals"));
@@ -41,5 +48,11 @@ public class Chord implements Sequence{
 			}
 		}
 		return isChordGood;
+	}
+
+	@Override
+	public List<Note> getNotes(Note rootNote) {
+		LOGGER.debug(() -> String.format("The chord creation has been requested with root note: %s",rootNote.getNote()));
+		return temporaryScale.getNotes(rootNote);
 	}
 }

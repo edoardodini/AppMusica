@@ -1,4 +1,4 @@
-package com.mycompany.app.app;
+package com.mycompany.app.app.chords;
 
 import static org.junit.Assert.*;
 
@@ -8,10 +8,14 @@ import java.util.List;
 
 import org.junit.Test;
 
-public class ChordTest {
+import com.mycompany.app.app.Interval;
+import com.mycompany.app.app.Note;
 
+public class ChordTest {
+	Note rootNoteDO = new Note("DO");
+	
 	@Test
-	public void testBasicChord() {
+	public void testBasicChordGet() {
 		Interval majorThird = new Interval(2,0);
 		Interval minorThird = new Interval(1,1);
 		List<Interval> majorChordIntervals = new ArrayList<Interval>(Arrays.asList(majorThird,minorThird));
@@ -54,5 +58,22 @@ public class ChordTest {
 		List<Interval> strangeChordIntervals = new ArrayList<Interval>(Arrays.asList(majorThird,minorThird,alsoMajorThird,alsoMinorThird,anotherMajorThird));
 		Chord strangeChord = new Chord(strangeChordIntervals);
 		assertEquals("The chords should be the same", strangeChord.getIntervals(), strangeChordIntervals);
+	}
+	
+	@Test
+	public void testBasicChordCreation() {
+		Note rootNoteSOL = new Note("SOL");
+		Interval majorThird = new Interval(2,0);
+		Interval minorThird = new Interval(1,1);
+		Interval[] majorChordIntervals = {majorThird, minorThird};
+		Chord majorChord = new Chord(Arrays.asList(majorChordIntervals));
+		
+		Note[] DOMajorChordNotes = {new Note("DO"), new Note("MI"), new Note("SOL")};
+		List<Note> majorChordOfDO = majorChord.getNotes(rootNoteDO);
+		assertEquals("The chord should be composed by the same elements", Arrays.asList(DOMajorChordNotes), majorChordOfDO);
+		
+		Note[] SOLMajorChordNotes = {new Note("SOL"), new Note("SI"), new Note("RE")};
+		List<Note> majorChordOfSOL = majorChord.getNotes(rootNoteSOL);
+		assertEquals("The chord should be composed by the same elements", Arrays.asList(SOLMajorChordNotes), majorChordOfSOL);
 	}
 }
