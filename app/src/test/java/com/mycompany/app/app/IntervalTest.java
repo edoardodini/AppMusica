@@ -36,5 +36,29 @@ public class IntervalTest {
 				() -> new Interval(wrongTones, wrongHalfTones));
 		assertEquals("The argument is not an interval", exceptionThree.getMessage());
 	}
+	
+	@Test
+	public void testEqualsSameObject(){
+		Interval x = new Interval(1,1);
+		assertEquals("the object are, and should be, equals",x,x);
+	}
+	
+	@Test
+	public void testEqualsNotIntervalObject(){
+		Interval x = new Interval(1,1);
+		String notInterval = "not an interval";
+		assertNotEquals("the object are not of the same kind, so they should be different",x,notInterval);
+	}
+	
+	@Test
+	public void testEqualsIntervals(){
+		Interval twoTone = new Interval(2,0);
+		Interval anotherTwoTone = new Interval(2,0);
+		Interval oneToneTwoHalf = new Interval(1,2);
+		Interval fourHalf = new Interval(0,4);
+		assertEquals("the object are composed of the same intervals and so equals", twoTone, anotherTwoTone);
+		assertEquals("the object are composed by different parts but the intervals are equal", twoTone, oneToneTwoHalf);
+		assertEquals("the object are composed by different parts but the intervals are equal", fourHalf, oneToneTwoHalf);
+	}
 
 }

@@ -52,9 +52,9 @@ public class ScaleEightTest {
 	
 	@Test
 	public void testScaleEightEnoughIntervalsButWrongPosition() {
-		List<Interval> wrongScaleIntervals7 = new ArrayList<Interval>(Arrays.asList(half, half, tone, tone, tone, tone, tone));
+		List<Interval> wrongScaleIntervals = new ArrayList<Interval>(Arrays.asList(half, half, tone, tone, tone, tone, tone));
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-				() -> new ScaleEight(wrongScaleIntervals7));
+				() -> new ScaleEight(wrongScaleIntervals));
 		assertEquals("The argument is not an eight scale", exception.getMessage());
 	}
 	

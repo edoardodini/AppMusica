@@ -1,4 +1,4 @@
-package com.mycompany.app.app;
+package com.mycompany.app.app.chords;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
+
+import com.mycompany.app.app.Interval;
+import com.mycompany.app.app.Note;
 
 public class ChordTest {
 	Note rootNoteDO = new Note("DO");
