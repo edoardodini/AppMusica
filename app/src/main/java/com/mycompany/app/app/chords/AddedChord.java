@@ -4,19 +4,25 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.mycompany.app.app.Interval;
 import com.mycompany.app.app.Note;
 import com.mycompany.app.app.Scale;
 
 public class AddedChord extends AbstractChordModifier implements AbstractChord, AbstractInvertableChord {
+	private static final Logger LOGGER = LogManager.getLogger(AddedChord.class);
 	private int addKind;
 
 	public AddedChord(int addKind, AbstractAddableChord addableChord) {
 		if(addKind==9||addKind==11||addKind==13) {
+			LOGGER.info("new added chord created");
 			chordToDecorate = addableChord;
 			this.addKind = addKind;
 		}
 		else {
+			LOGGER.debug("the added chord has not been created because of a wrong add kind");
 			throw new IllegalArgumentException("the add kind should be 9, 11 or 13");
 		}
 	}
@@ -44,6 +50,7 @@ public class AddedChord extends AbstractChordModifier implements AbstractChord, 
 		int tonesToReturn = halfsToReturn/2;
 		halfsToReturn = halfsToReturn%2;
 		chordIntervals.add(new Interval(tonesToReturn,halfsToReturn));
+		LOGGER.debug("the added chord intervals have been returned");
 		return chordIntervals;
 	}
 
@@ -64,10 +71,12 @@ public class AddedChord extends AbstractChordModifier implements AbstractChord, 
 		}
 		Scale biTone = new Scale(Arrays.asList(new Interval(0,halfsDistance)));
 		chordNotes.add(biTone.getNotes(rootNote).get(1));
+		LOGGER.debug("the added chord notes have been returned");
 		return chordNotes;
 	}
 
 	public Object getAddKind() {
+		LOGGER.debug("the added chord notes have been returned");
 		return addKind;
 	}
 

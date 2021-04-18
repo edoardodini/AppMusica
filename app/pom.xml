@@ -61,7 +61,6 @@
 					<version>1.4.10</version>
 					<configuration>
 						<targetClasses>
-							<!-- excludes testing.example.bank.app.Main -->
 							<param>com.mycompany.app.app.*</param>
 						</targetClasses>
 						<excludedTestClasses>
@@ -77,10 +76,11 @@
 				</plugin>
 				<plugin>
 					<groupId>org.jacoco</groupId>
-					<artifactId>jacoco-maven-plugin</artifactId>
-					<version>0.8.5</version>
+    				<artifactId>jacoco-maven-plugin</artifactId>
+    				<version>0.8.5</version>
 					<configuration>
 						<excludes>
+							<!-- excludes the main from the code coverage -->
 							<exclude>**/Main*</exclude>
 						</excludes>
 					</configuration>

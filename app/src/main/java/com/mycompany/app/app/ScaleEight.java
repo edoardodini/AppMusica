@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 public class ScaleEight implements Sequence {
 
-	private Logger LOGGER = LogManager.getLogger(IntervalCreator.class);
+	private static final Logger LOGGER = LogManager.getLogger(ScaleEight.class);
 	private List<Interval> scaleIntervals;
 	private Scale temporaryScale;
 
@@ -58,6 +58,7 @@ public class ScaleEight implements Sequence {
 		}
 	}
 
+	@Override
 	public List<Interval> getIntervals() {
 		LOGGER.debug("requested the intervals of the scale");
 		return scaleIntervals;
@@ -65,6 +66,7 @@ public class ScaleEight implements Sequence {
 
 	@Override
 	public List<Note> getNotes(Note rootNote) {
+		LOGGER.debug("requested the notes of the scale");
 		return normalizeEightScale(temporaryScale.getNotes(rootNote));
 	}
 	

@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 public class Interval {
 	private int tones;
 	private int halfTones;
-	private Logger LOGGER = LogManager.getLogger(Interval.class);
+	private static final Logger LOGGER = LogManager.getLogger(Interval.class);
 
 	public Interval(int tones, int halfTones) {
 		if ((tones >= 0) && (halfTones >= 0)) {
@@ -58,6 +58,4 @@ public class Interval {
 			return false;
 		}
 	}
-	
-	
 }

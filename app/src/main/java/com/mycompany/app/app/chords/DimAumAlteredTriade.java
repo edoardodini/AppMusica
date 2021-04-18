@@ -4,27 +4,35 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.mycompany.app.app.Interval;
 import com.mycompany.app.app.Note;
 import com.mycompany.app.app.Scale;
 
 public class DimAumAlteredTriade extends AbstractChordModifier implements AbstractChord, AbstractAddableChord, AbstractInvertableChord{
+	private static final Logger LOGGER = LogManager.getLogger(DimAumAlteredTriade.class);
 	private boolean isAugmented;
 
 	public DimAumAlteredTriade(boolean isAum, AbstractAumDimChord dimAumChord) {
 		boolean isMajor = isMajor(dimAumChord);
 		if((isMajor&&isAum)||(!isMajor&&!isAum)) {
+			LOGGER.info("the DimAumTriade has been created");
 			isAugmented = isAum;
 			chordToDecorate = dimAumChord;
 		}else if(isAum) {
+			LOGGER.debug("the DimAumTriade has not been created: not possible to augment a minor triade");
 			throw new IllegalArgumentException("it is not possible to augment a minor triade");
 		}else {
+			LOGGER.debug("the DimAumTriade has not been created: not possible to diminish a major triade");
 			throw new IllegalArgumentException("it is not possible to diminish a major triade");
 		}
 	}
 
 	@Override
 	public List<Interval> getIntervals() {
+		LOGGER.debug("the DimAumTriade intervals have been returned");
 		if (isAugmented) {
 			return new ArrayList<Interval>(Arrays.asList(new Interval(2,0),new Interval(2,0)));
 		}else {
@@ -48,10 +56,12 @@ public class DimAumAlteredTriade extends AbstractChordModifier implements Abstra
 			notesToReturn.set(1,biTone.getNotes(notesToReturn.get(0)).get(1));
 			notesToReturn.set(2,biTone.getNotes(notesToReturn.get(0)).get(2));
 		}
+		LOGGER.debug("the DimAumTriade notes have been returned");
 		return notesToReturn;
 	}
 
 	public boolean isAugmented() {
+		LOGGER.debug("the DimAumTriade augmented/dimished state has been returned");
 		return isAugmented;
 	}
 	

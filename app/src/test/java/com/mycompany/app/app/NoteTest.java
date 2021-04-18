@@ -53,11 +53,12 @@ public class NoteTest {
 		assertTrue("The notes are different", !firstNote.equals(secondNote));
 	}
 	
+	@SuppressWarnings("unlikely-arg-type")
 	@Test
 	public void testNoteCompareNotNote() {
 		String noteDo = "DO";
 		Note firstNote = new Note(noteDo);
-		assertTrue("The notes are different", !firstNote.equals(noteDo));
+		assertFalse("The notes are different (comparing a note with something else)", firstNote.equals(noteDo));
 	}
 	
 }
