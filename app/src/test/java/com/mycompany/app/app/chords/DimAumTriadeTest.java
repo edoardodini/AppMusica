@@ -16,7 +16,7 @@ import org.junit.Test;
 import com.mycompany.app.app.Interval;
 import com.mycompany.app.app.Note;
 
-public class DimAumAlteredTriadeTest {
+public class DimAumTriadeTest {
 	Interval majorThird = new Interval(2,0);
 	Interval minorThird = new Interval(1,1);
 	List<Interval> mockedMajorChordIntervals = new ArrayList<Interval>(Arrays.asList(majorThird, minorThird));
@@ -33,7 +33,7 @@ public class DimAumAlteredTriadeTest {
 		AbstractAumDimChord dimAumChord = mock(AbstractAumDimChord.class);
 		when(dimAumChord.getNotes(rootNoteDO)).thenReturn(mockedMajorChordNotes);
 		when(dimAumChord.getIntervals()).thenReturn(mockedMajorChordIntervals);
-		DimAumAlteredTriade dimAumTriade = new DimAumAlteredTriade(isAugmented, dimAumChord);
+		DimAumTriade dimAumTriade = new DimAumTriade(isAugmented, dimAumChord);
 		verify(dimAumChord, times(1)).getIntervals();
 		assertEquals("the inversion kind should be the same setted",isAugmented, dimAumTriade.isAugmented());
 		assertEquals("the chord to decorate should be the same setted",dimAumChord, dimAumTriade.getChordToDecorate());
@@ -42,7 +42,7 @@ public class DimAumAlteredTriadeTest {
 		isAugmented = false;
 		when(dimAumChord.getNotes(rootNoteDO)).thenReturn(mockedMinorChordNotes);
 		when(dimAumChord.getIntervals()).thenReturn(mockedMinorChordIntervals);
-		DimAumAlteredTriade secondDimAumTriade = new DimAumAlteredTriade(isAugmented, dimAumChord);
+		DimAumTriade secondDimAumTriade = new DimAumTriade(isAugmented, dimAumChord);
 		assertEquals("the inversion kind should be the same setted",isAugmented, secondDimAumTriade.isAugmented());
 		assertEquals("the chord to decorate should be the same setted",dimAumChord, secondDimAumTriade.getChordToDecorate());
 		verify(dimAumChord, times(2)).getIntervals();
@@ -55,7 +55,7 @@ public class DimAumAlteredTriadeTest {
 		AbstractAumDimChord AumDimChord = mock(AbstractAumDimChord.class);
 		when(AumDimChord.getNotes(rootNoteDO)).thenReturn(mockedMajorChordNotes);
 		when(AumDimChord.getIntervals()).thenReturn(mockedMajorChordIntervals);
-		DimAumAlteredTriade firstAugmentedChord = new DimAumAlteredTriade(isAugmented, AumDimChord);
+		DimAumTriade firstAugmentedChord = new DimAumTriade(isAugmented, AumDimChord);
 		verify(AumDimChord, times(1)).getIntervals();
 		Note[] notesMajorChordOfDOAum = {new Note("DO"),new Note("MI"),new Note("SOL#")};
 		Interval[] intervalsMajorChordOfDOAum = {majorThird,majorThird};
@@ -74,7 +74,7 @@ public class DimAumAlteredTriadeTest {
 		AbstractAumDimChord AumDimChord = mock(AbstractAumDimChord.class);
 		when(AumDimChord.getNotes(rootNoteDO)).thenReturn(mockedMinorChordNotes);
 		when(AumDimChord.getIntervals()).thenReturn(mockedMinorChordIntervals);
-		DimAumAlteredTriade firstDiminishedChord = new DimAumAlteredTriade(isAugmented, AumDimChord);
+		DimAumTriade firstDiminishedChord = new DimAumTriade(isAugmented, AumDimChord);
 		verify(AumDimChord, times(1)).getIntervals();
 		Note[] notesMajorChordOfDODim = {new Note("DO"),new Note("MIb"),new Note("SOLb")};
 		Interval[] intervalsMajorChordOfDODim = {minorThird,minorThird};
@@ -93,7 +93,7 @@ public class DimAumAlteredTriadeTest {
 		when(aumDimChord.getIntervals()).thenReturn(mockedMinorChordIntervals);
 		isAugmented=true;
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-				() -> new DimAumAlteredTriade(isAugmented, aumDimChord));
+				() -> new DimAumTriade(isAugmented, aumDimChord));
 		assertEquals("it is not possible to augment a minor triade", exception.getMessage());
 	}
 	
@@ -103,7 +103,7 @@ public class DimAumAlteredTriadeTest {
 		when(aumDimChord.getIntervals()).thenReturn(mockedMajorChordIntervals);
 		isAugmented=false;
 		IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-				() -> new DimAumAlteredTriade(isAugmented, aumDimChord));
+				() -> new DimAumTriade(isAugmented, aumDimChord));
 		assertEquals("it is not possible to diminish a major triade", exception.getMessage());
 	}
 

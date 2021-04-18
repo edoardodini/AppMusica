@@ -11,11 +11,11 @@ import com.mycompany.app.app.Interval;
 import com.mycompany.app.app.Note;
 import com.mycompany.app.app.Scale;
 
-public class DimAumAlteredTriade extends AbstractChordModifier implements AbstractChord, AbstractAddableChord, AbstractInvertableChord{
-	private static final Logger LOGGER = LogManager.getLogger(DimAumAlteredTriade.class);
+public class DimAumTriade extends AbstractChordModifier implements AbstractChord, AbstractAddableChord, AbstractInvertableChord{
+	private static final Logger LOGGER = LogManager.getLogger(DimAumTriade.class);
 	private boolean isAugmented;
 
-	public DimAumAlteredTriade(boolean isAum, AbstractAumDimChord dimAumChord) {
+	public DimAumTriade(boolean isAum, AbstractAumDimChord dimAumChord) {
 		boolean isMajor = isMajor(dimAumChord);
 		if((isMajor&&isAum)||(!isMajor&&!isAum)) {
 			LOGGER.info("the DimAumTriade has been created");
