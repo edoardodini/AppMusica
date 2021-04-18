@@ -7,15 +7,16 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Scale implements Sequence {
-	private Logger LOGGER = LogManager.getLogger(IntervalCreator.class);
+	private static final Logger LOGGER = LogManager.getLogger(Scale.class);
 	private List<Interval> scaleIntervals;
 	private IntervalCreator intCreat = new IntervalCreator();
 	
 	public Scale(List<Interval> scaleIntervals) {
 		this.scaleIntervals = scaleIntervals;
-		LOGGER.debug("created a scale by setting some intervals and a root note");
+		LOGGER.info("created a scale by setting some intervals and a root note");
 	}
 
+	@Override
 	public List<Interval> getIntervals() {
 		LOGGER.debug("requested the intervals of the scale");
 		return scaleIntervals;

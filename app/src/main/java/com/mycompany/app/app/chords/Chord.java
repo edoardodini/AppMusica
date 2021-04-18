@@ -6,12 +6,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.mycompany.app.app.Interval;
-import com.mycompany.app.app.IntervalCreator;
 import com.mycompany.app.app.Note;
 import com.mycompany.app.app.Scale;
 
 public class Chord implements AbstractSuspendableChord, AbstractInvertableChord, AbstractAddableChord{
-	private Logger LOGGER = LogManager.getLogger(IntervalCreator.class);
+	private static final Logger LOGGER = LogManager.getLogger(Chord.class);
 	private List<Interval> chordIntervals;
 	private Scale temporaryScale;
 		
