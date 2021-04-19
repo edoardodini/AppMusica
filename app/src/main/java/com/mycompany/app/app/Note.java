@@ -60,19 +60,29 @@ public class Note {
 	}
 
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = result * prime + note.hashCode();
+		LOGGER.debug(() -> String.format("The note hash code is returned"));
+		return result;
+	}
+
+	@Override
 	public boolean equals(Object o) {
 
 		// If the object is compared with itself then return true
 		if (o == this) {
-			LOGGER.debug(() -> String.format("The note is compared to the same object so they are equals"));
+			LOGGER.debug("The note is compared to the same object so they are equals");
 			return true;
 		}
 
 		/*
-		 * Check if o is an instance of Complex or not "null instance of [type]" also returns false
+		 * Check if o is an instance of Complex or not "null instance of [type]" also
+		 * returns false
 		 */
 		if (!(o instanceof Note)) {
-			LOGGER.debug(() -> String.format("The note is compared to an object that is not a note, it is a: " + o.getClass()));
+			LOGGER.debug("The note is compared to an object that is not a note, it is a: " + o.getClass());
 			return false;
 		}
 
@@ -81,10 +91,11 @@ public class Note {
 
 		// Compare the data members and return accordingly
 		if (noteUguali.get(note).equals(noteUguali.get(c.getNote()))) {
-			LOGGER.debug(() -> String.format("The note is compared to a note and they are equals, both: " + note));
+			LOGGER.debug("The note is compared to a note and they are equals, both: " + note);
 			return true;
 		} else {
-			LOGGER.debug(() -> String.format("The note is compared to a note and they are not equals, one is a %s and the other is a %s", note, c.getNote()));
+			LOGGER.debug("The note is compared to a note and they are not equals, one is a %s and the other is a %s",
+					note, c.getNote());
 			return false;
 		}
 	}
