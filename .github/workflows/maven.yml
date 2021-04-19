@@ -26,7 +26,7 @@ jobs:
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml', '**/*.yml') }}
         restore-keys: ${{ runner.os }}-m2-
     - name: Build with Maven
-      run: mvn -f app/pom.xml clean jacoco:prepare-agent test jacoco:report org.pitest:pitest-maven:mutationCoverage
+      run: mvn -f app/pom.xml clean verify site
       if: ${{ always() }}
     - name: Archive JaCoCo Report
       uses: actions/upload-artifact@v2
