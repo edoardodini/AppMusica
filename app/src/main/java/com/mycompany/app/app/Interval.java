@@ -14,7 +14,7 @@ public class Interval {
 			this.halfTones = halfTones;
 			LOGGER.info(() -> String.format("New interval created: %d tones and %d half tones", tones, halfTones));
 		} else {
-			LOGGER.debug(() -> String.format("New interval not created: invalid arguments"));
+			LOGGER.debug("New interval not created: invalid arguments");
 			throw new IllegalArgumentException("The argument is not an interval");
 		}
 	}
@@ -34,7 +34,7 @@ public class Interval {
 		final int prime = 31;
 		int result = 1;
 		result = result * prime + halfTones + 2 * tones;
-		LOGGER.debug(() -> String.format("Requested the hasCode of the Interval"));
+		LOGGER.debug("Requested the hasCode of the Interval");
 		return result;
 	}
 
@@ -43,7 +43,7 @@ public class Interval {
 
 		// If the object is compared with itself then return true
 		if (o == this) {
-			LOGGER.debug(() -> String.format("The interval is compared to the same object so they are equals"));
+			LOGGER.debug("The interval is compared to the same object so they are equals");
 			return true;
 		}
 
@@ -52,7 +52,7 @@ public class Interval {
 		 * returns false
 		 */
 		if (!(o instanceof Interval)) {
-			LOGGER.debug("The interval is compared to an object that is not an interval, it is a: " + o.getClass());
+			LOGGER.debug(() -> String.format("The interval is compared to an object that is not an interval, it is a: %s", o.getClass()));
 			return false;
 		}
 
