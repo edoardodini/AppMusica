@@ -27,7 +27,7 @@ public class NoteTest {
 	public void testNoteCompareEqualsBeingSame() {
 		String noteDo = "DO";
 		Note doNote = new Note(noteDo);
-		assertTrue("The notes are equals", doNote.equals(doNote));
+		assertEquals("The notes are equals", doNote, doNote);
 	}
 
 	@Test
@@ -38,10 +38,10 @@ public class NoteTest {
 		String noteReb = "REb";
 		Note firstNote = new Note(noteDo);
 		Note secondNote = new Note(alsoNoteDo);
-		assertTrue("The notes are equals", firstNote.equals(secondNote));
+		assertEquals("The notes are equals", firstNote, secondNote);
 		firstNote = new Note(noteDoDiesis);
 		secondNote = new Note(noteReb);
-		assertTrue("The notes are equals", firstNote.equals(secondNote));
+		assertEquals("The notes are equals", firstNote, secondNote);
 	}
 
 	@Test
@@ -50,15 +50,14 @@ public class NoteTest {
 		String noteRe = "RE";
 		Note firstNote = new Note(noteDo);
 		Note secondNote = new Note(noteRe);
-		assertTrue("The notes are different", !firstNote.equals(secondNote));
+		assertNotEquals("The notes are different", firstNote, secondNote);
 	}
 
-	@SuppressWarnings("unlikely-arg-type")
 	@Test
 	public void testNoteCompareNotNote() {
 		String noteDo = "DO";
 		Note firstNote = new Note(noteDo);
-		assertFalse("The notes are different (comparing a note with something else)", firstNote.equals(noteDo));
+		assertNotEquals("The notes are different (comparing a note with something else)", firstNote, noteDo);
 	}
 
 	@Test
@@ -77,5 +76,5 @@ public class NoteTest {
 		assertNotEquals("The notes are different, hash codes should be different", firstNote.hashCode(),
 				thirdNote.hashCode());
 	}
-
+	
 }
