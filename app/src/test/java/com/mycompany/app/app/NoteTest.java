@@ -61,4 +61,16 @@ public class NoteTest {
 		assertFalse("The notes are different (comparing a note with something else)", firstNote.equals(noteDo));
 	}
 	
+	@Test
+	public void testNoteHasCode() {
+		String noteDo = "DO";
+		String noteRe = "RE";
+		Note firstNote = new Note(noteDo);
+		Note secondNote = new Note(noteDo);
+		Note thirdNote = new Note(noteRe);
+		assertEquals("The notes are the same object son hash code should be equal", firstNote.hashCode(),firstNote.hashCode());
+		assertEquals("The notes are equals, but different objects, the hash codes should be equal", firstNote.hashCode(),secondNote.hashCode());
+		assertNotEquals("The notes are different, hash codes should be different", firstNote.hashCode(),thirdNote.hashCode());
+	}
+	
 }

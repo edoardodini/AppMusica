@@ -25,10 +25,20 @@ public class Interval {
 	}
 
 	public int getIntervalHalfTones() {
-		LOGGER.debug(() -> String.format("The half tones of the interval are asked and returned: %d half tones", halfTones));
+		LOGGER.debug(
+				() -> String.format("The half tones of the interval are asked and returned: %d half tones", halfTones));
 		return halfTones;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + halfTones + 2 * tones;
+		LOGGER.debug(() -> String.format("Requested the hasCode of the Interval"));
+		return result;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 
@@ -39,10 +49,12 @@ public class Interval {
 		}
 
 		/*
-		 * Check if o is an instance of Complex or not "null instance of [type]" also returns false
+		 * Check if o is an instance of Complex or not "null instance of [type]" also
+		 * returns false
 		 */
 		if (!(o instanceof Interval)) {
-			LOGGER.debug(() -> String.format("The interval is compared to an object that is not an interval, it is a: " + o.getClass()));
+			LOGGER.debug(() -> String
+					.format("The interval is compared to an object that is not an interval, it is a: " + o.getClass()));
 			return false;
 		}
 
@@ -50,7 +62,7 @@ public class Interval {
 		Interval c = (Interval) o;
 
 		// Compare the data members and return accordingly
-		if (halfTones+tones*2 == c.getIntervalHalfTones()+c.getIntervalTones()*2) {
+		if (halfTones + tones * 2 == c.getIntervalHalfTones() + c.getIntervalTones() * 2) {
 			LOGGER.debug(() -> String.format("The interval is compared to an interval and they are equals"));
 			return true;
 		} else {
