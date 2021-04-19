@@ -47,15 +47,15 @@ public class Note {
 			noteUguali.put("SIb", 11);
 			noteUguali.put("SI", 12);
 			noteUguali.put("DOb", 12);
-			LOGGER.info(() -> String.format("New note created: " + note));
+			LOGGER.info(() -> String.format("New note created: %s", note));
 		} else {
-			LOGGER.debug(() -> String.format("New note not created for invalid argument: " + noteString));
+			LOGGER.debug(() -> String.format("New note not created for invalid argument: %s", noteString));
 			throw new IllegalArgumentException("The argument is not a note");
 		}
 	}
 
 	public String getNote() {
-		LOGGER.debug(() -> String.format("Asked the note, it is: " + note));
+		LOGGER.debug(() -> String.format("Asked the note, it is: %s", note));
 		return note;
 	}
 
@@ -64,7 +64,7 @@ public class Note {
 		final int prime = 31;
 		int result = 1;
 		result = result * prime + note.hashCode();
-		LOGGER.debug(() -> String.format("The note hash code is returned"));
+		LOGGER.debug("The note hash code is returned");
 		return result;
 	}
 
@@ -82,7 +82,8 @@ public class Note {
 		 * returns false
 		 */
 		if (!(o instanceof Note)) {
-			LOGGER.debug("The note is compared to an object that is not a note, it is a: " + o.getClass());
+			LOGGER.debug(() -> String.format("The note is compared to an object that is not a note, it is a: %s",
+					o.getClass()));
 			return false;
 		}
 
@@ -91,7 +92,7 @@ public class Note {
 
 		// Compare the data members and return accordingly
 		if (noteUguali.get(note).equals(noteUguali.get(c.getNote()))) {
-			LOGGER.debug("The note is compared to a note and they are equals, both: " + note);
+			LOGGER.debug("The note is compared to a note and they are equals, both: %s", note);
 			return true;
 		} else {
 			LOGGER.debug("The note is compared to a note and they are not equals, one is a %s and the other is a %s",
