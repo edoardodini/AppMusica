@@ -15,21 +15,21 @@ public class NoteTest {
 		Note trialSecondNote = new Note(trialSecondNoteString);
 		assertEquals("The note is equal to the asigned one", trialSecondNoteString, trialSecondNote.getNote());
 	}
-	
+
 	@Test
 	public void testNoteConstructorInvalidArgument() {
 		String trialWrongNoteString = "wrongNote";
 		IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> new Note(trialWrongNoteString));
-		assertEquals("The argument is not a note",e.getMessage());
+		assertEquals("The argument is not a note", e.getMessage());
 	}
-	
+
 	@Test
 	public void testNoteCompareEqualsBeingSame() {
 		String noteDo = "DO";
 		Note doNote = new Note(noteDo);
 		assertTrue("The notes are equals", doNote.equals(doNote));
 	}
-	
+
 	@Test
 	public void testNoteCompareEqualsBeingEquals() {
 		String noteDo = "DO";
@@ -43,7 +43,7 @@ public class NoteTest {
 		secondNote = new Note(noteReb);
 		assertTrue("The notes are equals", firstNote.equals(secondNote));
 	}
-	
+
 	@Test
 	public void testNoteCompareEqualsBeingDifferent() {
 		String noteDo = "DO";
@@ -52,7 +52,7 @@ public class NoteTest {
 		Note secondNote = new Note(noteRe);
 		assertTrue("The notes are different", !firstNote.equals(secondNote));
 	}
-	
+
 	@SuppressWarnings("unlikely-arg-type")
 	@Test
 	public void testNoteCompareNotNote() {
@@ -60,7 +60,7 @@ public class NoteTest {
 		Note firstNote = new Note(noteDo);
 		assertFalse("The notes are different (comparing a note with something else)", firstNote.equals(noteDo));
 	}
-	
+
 	@Test
 	public void testNoteHasCode() {
 		String noteDo = "DO";
@@ -68,9 +68,14 @@ public class NoteTest {
 		Note firstNote = new Note(noteDo);
 		Note secondNote = new Note(noteDo);
 		Note thirdNote = new Note(noteRe);
-		assertEquals("The notes are the same object son hash code should be equal", firstNote.hashCode(),firstNote.hashCode());
-		assertEquals("The notes are equals, but different objects, the hash codes should be equal", firstNote.hashCode(),secondNote.hashCode());
-		assertNotEquals("The notes are different, hash codes should be different", firstNote.hashCode(),thirdNote.hashCode());
+		assertEquals("The note hash code should be equal to the implementation", new Note(noteDo).hashCode(),
+				31 * 1 + noteDo.hashCode());
+		assertEquals("The notes are the same object son hash code should be equal", firstNote.hashCode(),
+				firstNote.hashCode());
+		assertEquals("The notes are equals, but different objects, the hash codes should be equal",
+				firstNote.hashCode(), secondNote.hashCode());
+		assertNotEquals("The notes are different, hash codes should be different", firstNote.hashCode(),
+				thirdNote.hashCode());
 	}
-	
+
 }
