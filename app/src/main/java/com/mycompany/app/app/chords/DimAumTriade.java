@@ -67,7 +67,7 @@ public class DimAumTriade extends AbstractChordModifier implements AbstractChord
 	
 	private boolean isMajor(AbstractAumDimChord dimAumChord) {
 		List<Interval> intervals = dimAumChord.getIntervals();
-		if (intervals.get(0).equals(new Interval(2,0))&&intervals.get(1).equals(new Interval(1,1))) {
+		if (intervals.get(0).equals(new Interval(2,0))) {
 			return true;
 		}else {
 			return false;
