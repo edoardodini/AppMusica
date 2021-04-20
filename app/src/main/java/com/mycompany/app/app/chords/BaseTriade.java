@@ -19,9 +19,9 @@ AbstractSuspendableChord,  AbstractChord,  AbstractInvertableChord{
 	public BaseTriade(boolean major) {
 		LOGGER.info("a base triade has been created");
 		if(major) {
-			baseScale = new Scale(new ArrayList<Interval>(Arrays.asList(new Interval(2,0), new Interval(1,1))));
+			baseScale = new Scale(new ArrayList<>(Arrays.asList(new Interval(2,0), new Interval(1,1))));
 		}else {
-			baseScale = new Scale(new ArrayList<Interval>(Arrays.asList(new Interval(1,1), new Interval(2,0))));
+			baseScale = new Scale(new ArrayList<>(Arrays.asList(new Interval(1,1), new Interval(2,0))));
 		}
 	}
 
