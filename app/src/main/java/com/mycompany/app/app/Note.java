@@ -1,6 +1,6 @@
 package com.mycompany.app.app;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,10 +9,10 @@ public class Note {
 
 	private static final Logger LOGGER = LogManager.getLogger(Note.class);
 
-	private String note;
+	private String noteField;
 	private String[] validNotes = { "DO", "DO#", "DOb", "RE", "RE#", "REb", "MI", "MI#", "MIb", "FA", "FA#", "FAb",
 			"SOL", "SOL#", "SOLb", "LA", "LA#", "LAb", "SI", "SI#", "SIb" };
-	private Hashtable<String, Integer> noteUguali = new Hashtable<String, Integer>();
+	private HashMap<String, Integer> noteUguali = new HashMap<>();
 
 	private static boolean stringInList(String[] arr, String targetValue) {
 		for (String s : arr) {
@@ -25,7 +25,7 @@ public class Note {
 
 	public Note(String noteString) {
 		if (stringInList(validNotes, noteString)) {
-			note = noteString;
+			noteField = noteString;
 			noteUguali.put("SI#", 1);
 			noteUguali.put("DO", 1);
 			noteUguali.put("DO#", 2);
@@ -47,7 +47,7 @@ public class Note {
 			noteUguali.put("SIb", 11);
 			noteUguali.put("SI", 12);
 			noteUguali.put("DOb", 12);
-			LOGGER.info(() -> String.format("New note created: %s", note));
+			LOGGER.info(() -> String.format("New note created: %s", noteField));
 		} else {
 			LOGGER.debug(() -> String.format("New note not created for invalid argument: %s", noteString));
 			throw new IllegalArgumentException("The argument is not a note");
@@ -55,15 +55,15 @@ public class Note {
 	}
 
 	public String getNote() {
-		LOGGER.debug(() -> String.format("Asked the note, it is: %s", note));
-		return note;
+		LOGGER.debug(() -> String.format("Asked the note, it is: %s", noteField));
+		return noteField;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = result * prime + note.hashCode();
+		result = result * prime + noteField.hashCode();
 		LOGGER.debug("The note hash code is returned");
 		return result;
 	}
@@ -91,12 +91,12 @@ public class Note {
 		Note c = (Note) o;
 
 		// Compare the data members and return accordingly
-		if (noteUguali.get(note).equals(noteUguali.get(c.getNote()))) {
-			LOGGER.debug("The note is compared to a note and they are equals, both: %s", note);
+		if (noteUguali.get(noteField).equals(noteUguali.get(c.getNote()))) {
+			LOGGER.debug("The note is compared to a note and they are equals, both: %s", noteField);
 			return true;
 		} else {
 			LOGGER.debug("The note is compared to a note and they are not equals, one is a %s and the other is a %s",
-					note, c.getNote());
+					noteField, c.getNote());
 			return false;
 		}
 	}

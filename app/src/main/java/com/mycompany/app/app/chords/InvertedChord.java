@@ -9,26 +9,26 @@ import org.apache.logging.log4j.Logger;
 import com.mycompany.app.app.Interval;
 import com.mycompany.app.app.Note;
 
-public class InvertedChord extends AbstractChordModifier implements AbstractChord  {
+public class InvertedChord extends AbstractChordModifier implements AbstractChord {
 	private static final Logger LOGGER = LogManager.getLogger(InvertedChord.class);
 	private int inversion;
-	
+
 	public InvertedChord(int inversionKind, AbstractInvertableChord abstractChord) {
-		if(inversionKind>0) {
-			if(inversionKind<=abstractChord.getIntervals().size()) {
-				inversion = inversionKind; 
+		if (inversionKind > 0) {
+			if (inversionKind <= abstractChord.getIntervals().size()) {
+				inversion = inversionKind;
 				chordToDecorate = abstractChord;
 				LOGGER.info("created an inverted chord with an inversion of %d", inversion);
-			}else {
+			} else {
 				LOGGER.debug("the inverted chord cannot be created because of a too big inversion kind");
 				throw new IllegalArgumentException("the inversion kind should be minor than the lenght of the chord");
 			}
-		}else {
+		} else {
 			LOGGER.debug("the inverted chord cannot be created because of a negative or zero inversion kind");
 			throw new IllegalArgumentException("the inversion kind should be major than zero");
 		}
 	}
-	
+
 	@Override
 	public List<Interval> getIntervals() {
 		LOGGER.debug("the inverted chord intervals have been returned");
@@ -37,10 +37,10 @@ public class InvertedChord extends AbstractChordModifier implements AbstractChor
 
 	@Override
 	public List<Note> getNotes(Note rootNote) {
-		List<Note> chord = new ArrayList<Note>();
+		List<Note> chord = new ArrayList<>();
 		List<Note> notesToDecorate = chordToDecorate.getNotes(rootNote);
-		for (int i = 0; i<notesToDecorate.size();i++) {
-			chord.add(notesToDecorate.get((i+inversion)%notesToDecorate.size()));
+		for (int i = 0; i < notesToDecorate.size(); i++) {
+			chord.add(notesToDecorate.get((i + inversion) % notesToDecorate.size()));
 		}
 		LOGGER.debug("the inverted chord notes have been returned");
 		return chord;
