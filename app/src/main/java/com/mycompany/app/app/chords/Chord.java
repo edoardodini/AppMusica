@@ -52,8 +52,7 @@ public class Chord implements AbstractSuspendableChord, AbstractInvertableChord,
 
 	@Override
 	public List<Note> getNotes(Note rootNote) {
-		LOGGER.debug(
-				() -> String.format("The chord creation has been requested with root note: %s", rootNote.getNote()));
+		LOGGER.debug("The chord creation has been requested with a root note");
 		return temporaryScale.getNotes(rootNote);
 	}
 }
