@@ -3,7 +3,6 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-
 	<groupId>com.mycompany.app</groupId>
 	<artifactId>app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -20,10 +19,10 @@
 		<junit.version>4.13</junit.version>
 		<log4j.version>2.13.0</log4j.version>
 		<sonar.projectKey>edoardodini_AppMusica</sonar.projectKey>
-  		<sonar.organization>edoardodini-github</sonar.organization>
-  		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-  		<sonar.exclusions>**/Main_Music.java</sonar.exclusions>
-  		<sonar.coverage.exclusions>**/Main_Music.java</sonar.coverage.exclusions>
+		<sonar.organization>edoardodini-github</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.exclusions>**/Main_Music.java</sonar.exclusions>
+		<sonar.coverage.exclusions>**/Main_Music.java</sonar.coverage.exclusions>
 	</properties>
 
 	<dependencies>
@@ -71,7 +70,7 @@
 						</targetClasses>
 						<excludedTestClasses>
 							<param>main</param>
-						</excludedTestClasses>   
+						</excludedTestClasses>
 						<mutators>
 							<mutator>DEFAULTS</mutator>
 						</mutators>
@@ -89,8 +88,8 @@
 				</plugin>
 				<plugin>
 					<groupId>org.jacoco</groupId>
-    				<artifactId>jacoco-maven-plugin</artifactId>
-    				<version>0.8.5</version>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>0.8.5</version>
 					<configuration>
 						<excludes>
 							<!-- excludes the main from the code coverage -->
@@ -110,11 +109,11 @@
 				</plugin>
 				<plugin>
 					<groupId>org.sonarsource.scanner.maven</groupId>
-        			<artifactId>sonar-maven-plugin</artifactId>
-        			<configuration>
-          				<goalPrefix>sonar</goalPrefix>
-        			</configuration>
-      			</plugin>
+					<artifactId>sonar-maven-plugin</artifactId>
+					<configuration>
+						<goalPrefix>sonar</goalPrefix>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 
